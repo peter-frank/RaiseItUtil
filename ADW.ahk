@@ -38,6 +38,16 @@ sleep, 200
 SendInput {tab 2}
 return
 
+
+<^>b::
+sleep, 300
+SendInput {F12}
+sleep, 200
+SendInput b
+sleep, 200
+send, !o
+return
+
 !z::
 sleep, 300
 SendInput {F12}
