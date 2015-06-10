@@ -1,3 +1,5 @@
+;#include debug.ahk
+
 <^>t::
 	cut()
 	eins = %clipboard%
@@ -29,13 +31,6 @@ cutWithTabCount(){
 	MsgBox, 4, , Leider fehlgeschlagen - bitte nochmal versuchen bzw. Fehler melden, 5	
 	return
 }
-
-
-
-<^>r::
-	reload
-return
-
 
 F1::
 	showHelp()
@@ -74,18 +69,14 @@ cut(){
 	ClipWait, 1
 }
 
-log(text){
-	FileAppend, %text%`n, D:\Git\RaiseItADW\log.txt
-}
-
 showHelp(){
 	Gui, Add, Text,, Moegliche Befehle: 
 	appendCommandDescription(Gui,"Strg+m","Manuellen Vorschlag erstellen")
 	appendCommandDescription(Gui,"Strg+d","Daten einfuegen bei der Partner Anlage")
 	appendCommandDescription(Gui,"Strg+e","Umsatz zuordnen")
-	appendCommandDescription(Gui,"Strg+q","Umsatz buchen und nächsten Umsatz oeffnen")
-	appendCommandDescription(Gui,"Strg+r","Felder vertauschen (1 Tab)")
-	appendCommandDescription(Gui,"Strg+t","Felder vertauschen (2 Tabs)")
+	appendCommandDescription(Gui,"Strg+b","Umsatz buchen und nächsten Umsatz oeffnen")
+	appendCommandDescription(Gui,"Strg+t","Felder vertauschen")
+	appendCommandDescription(Gui,"Strg+q","RaiseIt Hotkeys Beenden")
 	gui, add, button, yp+20  gmyguiclose, Close
 	gui, add, button, X+0  gdocu, Online-Doku
 	gui,show
@@ -154,9 +145,12 @@ sleepShort(){
 }
 
 sleepMiddle(){
-	sleep, 500
+	sleepShort()
+	sleepShort()
+	sleepShort()
 }
 
 sleepLong(){
-	sleep, 1000
+	sleepMiddle()
+	sleepMiddle()
 }
