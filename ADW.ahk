@@ -1,4 +1,4 @@
-;#include debug.ahk
+#include debug.ahk
 
 <^>t::
 	cut()
@@ -13,6 +13,26 @@
 	sleepShort()
 	SendInput %zwei%
 return
+ 
+<^>s::	
+	openSchnellsuche()		
+return
+
+<^+>s::	
+	StringLeft, name, clipboard, 25
+	openSchnellsuche()	
+	SendInput *%name%*
+return
+
+openSchnellsuche(){
+	sleepShort()
+	Send !p	
+	sleepShort()
+	SendInput s
+	sleepMiddle()
+	SendInput {tab 3}
+}
+
 
 cutWithTabCount(){
 	SendInput {tab}
@@ -71,12 +91,15 @@ cut(){
 
 showHelp(){
 	Gui, Add, Text,, Moegliche Befehle: 
-	appendCommandDescription(Gui,"Strg+m","Manuellen Vorschlag erstellen")
+	appendCommandDescription(Gui,"Strg+b","Umsatz buchen und naechsten Umsatz oeffnen")
 	appendCommandDescription(Gui,"Strg+d","Daten einfuegen bei der Partner Anlage")
-	appendCommandDescription(Gui,"Strg+e","Umsatz zuordnen")
-	appendCommandDescription(Gui,"Strg+b","Umsatz buchen und nächsten Umsatz oeffnen")
+	appendCommandDescription(Gui,"Strg+e","Umsatz zuordnen")	
+	appendCommandDescription(Gui,"Strg+m","Manuellen Vorschlag erstellen")
+	appendCommandDescription(Gui,"Strg+q","RaiseIt Hotkeys Beenden")		
+	appendCommandDescription(Gui,"Strg+s","Schnellsuche oeffnen")
+	appendCommandDescription(Gui,"Strg+S","Schnellsuche oeffnen und Name einfuegen")
 	appendCommandDescription(Gui,"Strg+t","Felder vertauschen")
-	appendCommandDescription(Gui,"Strg+q","RaiseIt Hotkeys Beenden")
+	
 	gui, add, button, yp+20  gmyguiclose, Close
 	gui, add, button, X+0  gdocu, Online-Doku
 	gui,show
@@ -107,12 +130,12 @@ docu:
 	Vorname := NameArray[2]
 	Name := NameArray[1]
 	SendInput +{tab 12}
-	EnterContextKey("m")
+	EnterContextKey("m")z
 	SendInput {tab 3}
 	sleepShort()
-	SendInput %Vorname%*
+	SendInput *%Vorname%*
 	SendInput {tab 2}
-	SendInput %Name%*
+	SendInput *%Name%*
 	SendInput +{tab 7}
 return
 
