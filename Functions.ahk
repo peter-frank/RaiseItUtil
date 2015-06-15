@@ -58,23 +58,28 @@ cut(){
 	ClipWait, 1
 }
 
+showHelpOnStartup(){
+	static _ := showHelpOnStartup()
+	Gui, font,bold
+	Gui, Add, Text,,Willkommen bei RaiseIt Hotkeys
+	Gui, Add, Text,,Folgende Befehle (Strg+Buchstabe) sind aktuell aktiv:
+	appendCommandDescription(Gui,"F1","Diese Schnellhilfe")
+	showHelp()
+	sleep 8000
+	gui, destroy
+}
+
 showHelp(){
-    static _ := showHelp()
-
-	Gui, Add, Text,, Moegliche Befehle: 
-	appendCommandDescription(Gui,"Strg+b","Umsatz buchen und naechsten Umsatz oeffnen")
-	appendCommandDescription(Gui,"Strg+d","Daten einfuegen bei der Partner Anlage")
-	appendCommandDescription(Gui,"Strg+e","Umsatz zuordnen und naechsten Umsatz oeffnen")
-	appendCommandDescription(Gui,"Strg+E","Umsatz zuordnen")		
-	appendCommandDescription(Gui,"Strg+m","Manuellen Vorschlag erstellen")
-	appendCommandDescription(Gui,"Strg+q","RaiseIt Hotkeys Beenden")		
-	appendCommandDescription(Gui,"Strg+s","Schnellsuche oeffnen")
-	appendCommandDescription(Gui,"Strg+S","Schnellsuche oeffnen und Name einfuegen")
-	appendCommandDescription(Gui,"Strg+t","Felder vertauschen")
-	appendCommandDescription(Gui,"F1","Schnellhilfe")
-
+	appendCommandDescription(Gui,"d","Daten einfuegen bei der Partner Anlage")
+	appendCommandDescription(Gui,"e","Umsatz zuordnen und naechsten Umsatz oeffnen")
+	appendCommandDescription(Gui,"E","Umsatz zuordnen")		
+	appendCommandDescription(Gui,"m","Manuellen Vorschlag erstellen")
+	appendCommandDescription(Gui,"q","RaiseIt Hotkeys Beenden")		
+	appendCommandDescription(Gui,"s","Schnellsuche oeffnen")
+	appendCommandDescription(Gui,"S","Schnellsuche oeffnen und Name einfuegen")
+	appendCommandDescription(Gui,"t","Felder vertauschen")
 	
-	gui, add, button, yp+20  gmyguiclose, Close
+	gui, add, button, yp+20  gmyguiclose, Schliessen
 	gui, add, button, X+0  gdocu, Online-Doku
 	gui,show
 return
